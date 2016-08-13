@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrarRegistrar_string"
+        android:id="@+id/registrarRegistrar_textView"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomeRegistrar_editText"
+        android:hint="@string/nomeRegistrar_string"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sobrenomeRegistrar_editText"
+        android:hint="@string/sobrenomeRegistrar_string"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/telefoneRegistrar_editText"
+        android:hint="@string/telefoneRegistrar_string"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/cpfRegistrar_editText"
+        android:hint="@string/cpfRegistrar_string"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailRegistrar_editText"
+        android:hint="@string/emailRegistrar_string"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/senha1Registrar_editText"
+        android:hint="@string/senha1Registrar_string"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/senha2Registrar_editText"
+        android:hint="@string/senha2Registrar_string"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrarbuttonRegistrar_string"
+        android:id="@+id/registrarRegistrar_button"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

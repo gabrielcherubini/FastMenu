@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">FastMenu</string>
+    <string name="emailLogin_string">E-mail</string>
+    <string name="senhaLogin_string">Senha</string>
+    <string name="loginLogin_textView">Login</string>
+    <string name="tituloLogin_string">Fast Menu</string>
+    <string name="loginbuttonLogin_string">Login</string>
+    <string name="registrarbuttonLogin_string">Registrar</string>
+    <string name="registrarRegistrar_string">Registrar</string>
+    <string name="nomeRegistrar_string">Nome</string>
+    <string name="sobrenomeRegistrar_string">Sobrenome</string>
+    <string name="telefoneRegistrar_string">Telefone</string>
+    <string name="emailRegistrar_string">E-mail</string>
+    <string name="senha1Registrar_string">Senha</string>
+    <string name="senha2Registrar_string">Confirmar senha</string>
+    <string name="registrarbuttonRegistrar_string">Registrar</string>
+    <string name="adicionarNovoMetodo_string">Adicionar novo método</string>
+    <string name="cpfRegistrar_string">CPF (sem pontos ou traços)</string>
+    <string name="cartaodecreditoNovoMetodo_string">Cartão de crédito</string>
+    <string name="cartaoCartao_string">Adicionar novo cartão de crédito</string>
+    <string name="numeroCartao_string">Número do cartão</string>
+    <string name="datadevalidadeCartao_string">Data de validade</string>
+    <string name="codigodesegurancaCartao_string">Cod. Segurança</string>
+    <string name="nomeCartao_string">Nome</string>
+    <string name="bandeiraDescricao_string">Bandeira do cartão</string>
+    <string name="adicionarCartao_string">Adicionar</string>
+
+    <string name="faltaInfoToast_string">Todos os campos devem ser preenchidos.</string>
+    <string name="CPFRegistradoToast_string">O CPF informado já está cadastrado.</string>
+    <string name="senhaInvalidaToast_string">A senha deve ter no mínimo 6 caracteres.</string>
+    <string name="senhaDiferenteToast_string">As senhas digitadas estão diferentes.</string>
+
+    <string name="emailNaoRegistradoToast_string">Email não registrado ou senha incorreta</string>
+
+    <string name="app_RegistrarActivity">Registrar</string>
+</resources>
