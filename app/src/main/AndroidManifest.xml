@@ -8,15 +8,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fastmenu.gcherubini.android.fastmenu.login.LoginActivity">
+        <activity android:name=".fastmenu.gcherubini.android.fastmenu.superclasses.SingleFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".fastmenu.gcherubini.android.fastmenu.registrar.RegistrarActivity"
-            android:label="@string/app_RegistrarActivity">
         </activity>
     </application>
 

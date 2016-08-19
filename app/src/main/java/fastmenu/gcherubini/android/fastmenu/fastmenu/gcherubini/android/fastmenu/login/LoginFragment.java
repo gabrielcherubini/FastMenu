@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import fastmenu.gcherubini.android.fastmenu.R;
-import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.registrar.RegistrarActivity;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.SingleFragmentActivity;
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.Usuario;
 
 /**
@@ -44,7 +44,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick (View v)
             {
-                Intent intent = new Intent(getActivity(),RegistrarActivity.class);
+                Intent intent = new Intent(getActivity(),SingleFragmentActivity.class);
                 startActivity(intent);
             }
         });
