@@ -31,6 +31,4 @@
     <string name="senhaDiferenteToast_string">As senhas digitadas estão diferentes.</string>
 
     <string name="emailNaoRegistradoToast_string">Email não registrado ou senha incorreta</string>
-
-    <string name="app_RegistrarActivity">Registrar</string>
 </resources>
