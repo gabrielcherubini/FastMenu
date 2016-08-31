@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/senha1Registrar_editText"
+        android:id="@+id/senhaRegistrar_editText"
         android:hint="@string/senha1Registrar_string"/>
 
     <EditText

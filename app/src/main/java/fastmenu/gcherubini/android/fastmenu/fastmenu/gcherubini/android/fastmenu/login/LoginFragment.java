@@ -10,8 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import fastmenu.gcherubini.android.fastmenu.R;
-import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.SingleFragmentActivity;
-import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.Usuario;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.registrar.RegistrarActivity;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.restaurants.RestaurantListActivity;
+
 
 /**
  * Created by G.Cherubini on 09/08/2016.
@@ -44,7 +45,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick (View v)
             {
-                Intent intent = new Intent(getActivity(),SingleFragmentActivity.class);
+                Intent intent = new Intent(getActivity(), RegistrarActivity.class);
                 startActivity(intent);
             }
         });
@@ -56,18 +57,22 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick (View v)
             {
-                UsuarioLogin usuarioLogin = new UsuarioLogin(mEmailEditText.getText().toString(), mSenhaEditText.getText().toString());
+                /* UsuarioLogin usuarioLogin = new UsuarioLogin(mEmailEditText.getText().toString(), mSenhaEditText.getText().toString());
 
                 if(usuarioLogin.isUserRegistered())
                 {
                     Usuario usuario = usuarioLogin.buscaUsuario();
 
-                    if (usuario.getSenha1().equals(mSenhaEditText.getText().toString()))
+                    if (usuario.getSenha().equals(mSenhaEditText.getText().toString()))
                     {
                         //TODO: Código para logar usuário (criar fragmento de menu, com subfragmento de informações do usuario)
                         //TODO: Código para exibir tela de seleção de restaurantes
+
                     }
-                }
+                }*/
+
+                Intent intent = new Intent(getActivity(),RestaurantListActivity.class);
+                startActivity(intent);
             }
 
 

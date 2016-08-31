@@ -1,8 +1,5 @@
 package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.login;
 
-import android.widget.Toast;
-
-import fastmenu.gcherubini.android.fastmenu.R;
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.interfaces.Queries;
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.Usuario;
 
@@ -44,33 +41,34 @@ public class UsuarioLogin implements Queries
     }
 
     //Implementação dos métodos abstratos da interface Queries definida. TODO: FALAR COM F. PINTO
+
     public String queryNome(String email)
     {
-        String nome;
+        String nome = "";
 
         return nome;
     }
     public String querySobrenome(String email)
     {
-        String sobrenome;
+        String sobrenome = "";
 
         return sobrenome;
     }
     public String queryTelefone(String email)
     {
-        String telefone;
+        String telefone = "";
 
         return telefone;
     }
     public String queryCPF(String email)
     {
-        String CPF;
+        String CPF = "";
 
         return CPF;
     }
     public String querySenha(String email)
     {
-        String senha;
+        String senha = "";
 
         return senha;
     }
@@ -89,10 +87,9 @@ public class UsuarioLogin implements Queries
     //Método para buscar qual o usuário correspondente ao login informado
     public Usuario buscaUsuario()
     {
-
         //Cria nova instancia de "Usuário", buscando os dados de seus campos a partir do seu email na base de dados. TODO: FALAR COM F. PINTO
         return new Usuario(queryNome(getEmailLogin()), querySobrenome(getEmailLogin()), queryTelefone(getEmailLogin()),
-                queryCPF(getEmailLogin()), getEmailLogin(), querySenha(getEmailLogin()), querySenha(getEmailLogin()));
+                queryCPF(getEmailLogin()), getEmailLogin(), querySenha(getEmailLogin()));
     }
 
 
