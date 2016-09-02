@@ -25,10 +25,13 @@
     <string name="bandeiraDescricao_string">Bandeira do cartão</string>
     <string name="adicionarCartao_string">Adicionar</string>
 
-    <string name="faltaInfoToast_string">Todos os campos devem ser preenchidos.</string>
-    <string name="CPFRegistradoToast_string">O CPF informado já está cadastrado.</string>
-    <string name="senhaInvalidaToast_string">A senha deve ter no mínimo 6 caracteres.</string>
-    <string name="senhaDiferenteToast_string">As senhas digitadas estão diferentes.</string>
+    <string name="faltaInfo_string">Todos os campos devem ser preenchidos.</string>
+    <string name="CPFInvalido_string">CPF inválido</string>
+    <string name="CPFRegistrado_string">CPF já cadastrado.</string>
+    <string name="senhaInvalida_string">A senha deve ter no mínimo 6 caracteres.</string>
+    <string name="senhaDiferente_string">As senhas digitadas estão diferentes.</string>
+    <string name="telefoneInvalido_string">Telefone inválido</string>
+    <string name="ok_string">Ok!</string>
 
     <string name="emailNaoRegistradoToast_string">Email não registrado ou senha incorreta</string>
 </resources>
