@@ -109,6 +109,10 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flagRegistrar_textView"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -116,5 +120,6 @@
         android:text="@string/registrarbuttonRegistrar_string"
         android:id="@+id/registrarRegistrar_button"
         android:layout_gravity="center_horizontal"/>
+
 
 </LinearLayout>

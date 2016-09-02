@@ -35,9 +35,12 @@ public class RegistrarFragment extends Fragment
     protected TextView mCPFTextViewRegistrar;
     protected TextView mSenhaTextViewRegistrar;
     protected TextView mSenha2TextViewRegistrar;
+    protected TextView mFlagTextViewRegistrar;
 
-    protected Usuario usuarioRegistro;
-    protected boolean flagErro;
+    private boolean flagErro;
+
+    protected Usuario mUsuario;
+    protected RegistrarUsuario mRegistrarUsuario;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -55,6 +58,7 @@ public class RegistrarFragment extends Fragment
         mCPFTextViewRegistrar = (TextView)v.findViewById(R.id.cpf_textView);
         mSenhaTextViewRegistrar = (TextView)v.findViewById(R.id.senha_textView);
         mSenha2TextViewRegistrar = (TextView)v.findViewById(R.id.senha2_textView);
+        mFlagTextViewRegistrar = (TextView)v.findViewById(R.id.flagRegistrar_textView);
 
 
         //Definindo as referências dos EditText
@@ -81,6 +85,11 @@ public class RegistrarFragment extends Fragment
         mSenhaEditTextRegistrar.setText(null);
         mSenha2EditTextRegistrar.setText(null);
 
+        for(int i = 0; i < VerificaFormulario.fieldStatusErro.length; i++)
+        {
+            VerificaFormulario.fieldStatusErro[i] = false;
+        }
+
         //Click Listener no botão "Registrar"
         mRegistrarButtonRegistrar = (Button)v.findViewById(R.id.registrarRegistrar_button);
         mRegistrarButtonRegistrar.setOnClickListener(new View.OnClickListener()
@@ -88,13 +97,66 @@ public class RegistrarFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                //Inicializando classe para registro dos usuários
-                usuarioRegistro = new Usuario(mNomeEditTextRegistrar.getText().toString(),mSobrenomeEditTextRegistrar.getText().toString(),
-                        mTelefoneEditTextRegistrar.getText().toString(),mCPFEditTextRegistrar.getText().toString(),mEmailEditTextRegistrar.getText().toString(),
-                        mSenhaEditTextRegistrar.getText().toString());
+                loop:
+                for(int i = 0; i < VerificaFormulario.fieldStatusErro.length; i++)
+                {
+                    flagErro = false;
+                    //Array fieldStatusErro: Pos1 = Tel inválido, Pos2 = CPF inválido, Pos3 = CPF já registrado, Pos4 = Senha inválida, Pos5 = Senhas divergem
+                    if(VerificaFormulario.fieldStatusErro[i])
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                mFlagTextViewRegistrar.setText(R.string.telefoneInvalido_string);
+                                mTelefoneEditTextRegistrar.requestFocus();
+                                flagErro = true;
+                                break loop;
+                            case 1:
+                                mFlagTextViewRegistrar.setText(R.string.CPFInvalido_string);
+                                mCPFEditTextRegistrar.requestFocus();
+                                flagErro = true;
+                                break loop;
+                            case 2:
+                                mFlagTextViewRegistrar.setText(R.string.CPFRegistrado_string);
+                                mCPFEditTextRegistrar.requestFocus();
+                                flagErro = true;
+                                break loop;
+                            case 3:
+                                mFlagTextViewRegistrar.setText(R.string.senhaInvalida_string);
+                                mSenhaEditTextRegistrar.requestFocus();
+                                flagErro = true;
+                                break loop;
+                            case 4:
+                                mFlagTextViewRegistrar.setText(R.string.senhaDiferente_string);
+                                mSenha2EditTextRegistrar.requestFocus();
+                                flagErro = true;
+                                break loop;
+                            default:
+                                mFlagTextViewRegistrar.setText("");
+                                flagErro = true;
+                                break loop;
+                        }
+                    }
+                }
 
+                if (!flagErro)
+                {
+                    if(VerificaFormulario.isComplete(new String[] {mNomeEditTextRegistrar.getText().toString(), mSobrenomeEditTextRegistrar.getText().toString(),
+                            mTelefoneEditTextRegistrar.getText().toString(), mCPFEditTextRegistrar.getText().toString(), mEmailEditTextRegistrar.getText().toString(),
+                            mSenhaEditTextRegistrar.getText().toString(),  mSenha2EditTextRegistrar.getText().toString()}))
+                    {
+                        //Inicializando classe para registro dos usuários
+                        mUsuario = new Usuario(mNomeEditTextRegistrar.getText().toString(), mSobrenomeEditTextRegistrar.getText().toString(),
+                                mTelefoneEditTextRegistrar.getText().toString(), mCPFEditTextRegistrar.getText().toString(), mEmailEditTextRegistrar.getText().toString(),
+                                mSenhaEditTextRegistrar.getText().toString());
 
-
+                        mRegistrarUsuario = new RegistrarUsuario(mUsuario);
+                    }
+                    else
+                    {
+                        mFlagTextViewRegistrar.setText(R.string.camposVazios_string);
+                    }
+                }
             }
         });
 
@@ -103,22 +165,22 @@ public class RegistrarFragment extends Fragment
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                //Limpa o campo quando o foco chega até ele
-                if (!hasFocus)
+                if (mTelefoneEditTextRegistrar.getText().toString().length() == 0)
                 {
-                    mTelefoneEditTextRegistrar.setText(null);
+                    mTelefoneTextViewRegistrar.setText("");
+                    VerificaFormulario.fieldStatusErro[0] = true;
                 }
                 else
                 {
-                    if(VerificaFormulario.isTelOK(mTelefoneEditTextRegistrar.getText().toString()))
+                    if (VerificaFormulario.isTelOK(mTelefoneEditTextRegistrar.getText().toString()))
                     {
                         mTelefoneTextViewRegistrar.setText(R.string.ok_string);
-                        flagErro = false;
-                    }
-                    else
+                        mFlagTextViewRegistrar.setText("");
+                        VerificaFormulario.fieldStatusErro[0] = false;
+                    } else
                     {
                         mTelefoneTextViewRegistrar.setText(R.string.telefoneInvalido_string);
-                        flagErro = true;
+                        VerificaFormulario.fieldStatusErro[0] = true;
                     }
                 }
             }
@@ -129,32 +191,33 @@ public class RegistrarFragment extends Fragment
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
+                if (mCPFEditTextRegistrar.getText().toString().length() == 0)
                 {
-                    mCPFEditTextRegistrar.setText(null);
+                    mCPFTextViewRegistrar.setText("");
+                    VerificaFormulario.fieldStatusErro[1] = true;
+                    VerificaFormulario.fieldStatusErro[2] = true;
                 }
                 else
                 {
-                    if(VerificaFormulario.isCPFOK(mCPFEditTextRegistrar.getText().toString()) &&
+                    if (VerificaFormulario.isCPFOK(mCPFEditTextRegistrar.getText().toString()) &&
                             VerificaFormulario.isCPFAvailable(mCPFEditTextRegistrar.getText().toString()))
                     {
                         mCPFTextViewRegistrar.setText(R.string.ok_string);
-                        flagErro = false;
-                    }
-                    else
+                        mFlagTextViewRegistrar.setText("");
+                        VerificaFormulario.fieldStatusErro[1] = false;
+                        VerificaFormulario.fieldStatusErro[2] = false;
+                    } else
                     {
-                        if(!VerificaFormulario.isCPFOK(mCPFEditTextRegistrar.getText().toString()))
+                        if (!VerificaFormulario.isCPFOK(mCPFEditTextRegistrar.getText().toString()))
                         {
                             mCPFTextViewRegistrar.setText(R.string.CPFInvalido_string);
-                            flagErro = true;
-                        }
-                        else if(!VerificaFormulario.isCPFAvailable(mCPFEditTextRegistrar.getText().toString()))
+                            VerificaFormulario.fieldStatusErro[1] = true;
+                        } else if (!VerificaFormulario.isCPFAvailable(mCPFEditTextRegistrar.getText().toString()))
                         {
                             mCPFTextViewRegistrar.setText(R.string.CPFRegistrado_string);
-                            flagErro = true;
+                            VerificaFormulario.fieldStatusErro[2] = true;
                         }
                     }
-
                 }
             }
         });
@@ -164,23 +227,23 @@ public class RegistrarFragment extends Fragment
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
+                if (mSenhaEditTextRegistrar.getText().toString().length() == 0)
                 {
-                    mSenhaEditTextRegistrar.setText(null);
+                    mSenhaTextViewRegistrar.setText("");
+                    VerificaFormulario.fieldStatusErro[2] = true;
                 }
                 else
                 {
                     if (VerificaFormulario.isPasswordOk(mSenhaEditTextRegistrar.getText().toString()))
                     {
                         mSenhaTextViewRegistrar.setText(R.string.ok_string);
-                        flagErro = false;
-                    }
-                    else
+                        mFlagTextViewRegistrar.setText("");
+                        VerificaFormulario.fieldStatusErro[2] = false;
+                    } else
                     {
                         mSenhaTextViewRegistrar.setText(R.string.senhaInvalida_string);
-                        flagErro = true;
+                        VerificaFormulario.fieldStatusErro[2] = true;
                     }
-
                 }
             }
         });
@@ -190,25 +253,29 @@ public class RegistrarFragment extends Fragment
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
+                if (mSenha2EditTextRegistrar.getText().toString().length() == 0)
                 {
-                    mSenha2EditTextRegistrar.setText(null);
+                    mSenha2TextViewRegistrar.setText("");
+                    VerificaFormulario.fieldStatusErro[3] = true;
                 }
                 else
                 {
                     if (VerificaFormulario.arePasswordsSame(mSenhaEditTextRegistrar.getText().toString(), mSenha2EditTextRegistrar.getText().toString()))
                     {
                         mSenha2TextViewRegistrar.setText(R.string.ok_string);
-                        flagErro = false;
+                        mFlagTextViewRegistrar.setText("");
+                        VerificaFormulario.fieldStatusErro[3] = false;
                     }
                     else
                     {
                         mSenha2TextViewRegistrar.setText(R.string.senhaDiferente_string);
-                        flagErro = true;
+                        VerificaFormulario.fieldStatusErro[3] = true;
                     }
-
                 }
+
+
             }
+
         });
 
         return v;

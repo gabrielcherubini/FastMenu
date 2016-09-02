@@ -11,7 +11,6 @@ public abstract class Mask
 {
 
     public static final String tel8 = "(##)####-####";
-    public static final String telDefault = "####-####";
     public static final String tel9 = "(##)#####-####";
     public static final String cpf = "###.###.###-##";
 
@@ -35,7 +34,6 @@ public abstract class Mask
                 String str = Mask.unmask(s.toString());
                 String mascara = "";
                 String mask;
-                String defaultMask = getDefaultMask(str);
 
                 if (isCPF)
                 {
@@ -52,7 +50,7 @@ public abstract class Mask
                             mask = tel8;
                             break;
                         default:
-                            mask = defaultMask;
+                            mask = tel9;
                             break;
                     }
                 }
@@ -93,14 +91,5 @@ public abstract class Mask
             @Override
             public void afterTextChanged(Editable s) {}
         };
-    }
-    private static String getDefaultMask(String str)
-    {
-        String defaultMask = telDefault;
-        if (str.length() > 11)
-        {
-            defaultMask = tel9;
-        }
-        return defaultMask;
     }
 }

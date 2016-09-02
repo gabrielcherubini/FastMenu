@@ -10,53 +10,30 @@ import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu
  */
 public class VerificaFormulario
 {
-    //Instancia de "Usuário" criada ao clicar o botão de registro
-    private Usuario mUsuario;
-
-    //Senha 2 do formulário
-    private String mSenha2;
-
+    //Array de boolean para checar se há algum campo preenchido de forma errada
+    protected static boolean[] fieldStatusErro = new boolean[5];
 
     //Array de boolean para checar se os campos estão vazios
-    private boolean[] isCampoNull = new boolean[7];
+    private static boolean[] isCampoNull = new boolean[7];
 
     //Constructor
-    public VerificaFormulario(Usuario usuario, String senha2)
-    {
-        setUsuario(usuario);
-        setSenha2(senha2);
-    }
+    public VerificaFormulario() {}
 
-    public void setUsuario(Usuario usuario)
+    //Checa se todos os campos do formulário foram preenchidos
+    protected static boolean isComplete(String[] fields)
     {
-        mUsuario = usuario;
-    }
+        boolean b = true;
 
-    public void setSenha2(String senha2)
-    {
-        mSenha2 = senha2;
-    }
+        //Coloca TRUE em todos os campos do array de boolean (default: formulário está vazio)
 
-    //Coloca TRUE em todos os campos do array de boolean (default: formulário está vazio)
-    private void setTrue()
-    {
         for (int i = 0; i < isCampoNull.length; i++)
         {
             isCampoNull[i] = true;
         }
-    }
 
-    //Checa se todos os campos do formulário foram preenchidos
-    protected boolean isComplete()
-    {
-        boolean b = true;
-        String[] camposAux = {mUsuario.getNome(), mUsuario.getSobrenome(), mUsuario.getTelefone(), mUsuario.getCPF(), mUsuario.getEmail(), mUsuario.getSenha(), mSenha2};
-
-        setTrue();
-
-        for (int i = 0; i < camposAux.length; i++)
+        for (int i = 0; i < fields.length; i++)
         {
-            if (camposAux[i] != null)
+            if ((fields[i] != null) && (fields[i] != ""))
             {
                 isCampoNull[i] = false;
             }
@@ -89,11 +66,12 @@ public class VerificaFormulario
             return false;
         }
     }
-    protected static boolean isCPFOK(String cpf)
+    protected static boolean isCPFOK(String cpfGrande)
     {
         boolean isCPF;
         char dig10, dig11;
         int sm, i, r, num, peso;
+        String cpf = Mask.unmask(cpfGrande);
 
         if (cpf.equals("00000000000") || cpf.equals("11111111111") ||
                 cpf.equals("22222222222") || cpf.equals("33333333333") ||
@@ -175,18 +153,8 @@ public class VerificaFormulario
 
     protected static boolean isTelOK(String telefone)
     {
-        Mask.unmask(telefone);
-
-        if ((telefone.length() != 10) || (telefone.length() != 11))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        String tel = Mask.unmask(telefone);
+        return ((tel.length() == 10) || (tel.length() == 11));
     }
-
-
 
 }

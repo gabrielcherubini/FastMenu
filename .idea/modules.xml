@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FastMenu.iml" filepath="$PROJECT_DIR$/FastMenu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FastMenuGit.iml" filepath="$PROJECT_DIR$/FastMenuGit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
