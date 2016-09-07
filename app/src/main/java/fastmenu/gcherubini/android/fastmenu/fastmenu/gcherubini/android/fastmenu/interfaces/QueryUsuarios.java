@@ -3,7 +3,7 @@ package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmen
 /**
  * Created by G.Cherubini on 11/08/2016.
  */
-public interface Queries
+public interface QueryUsuarios
 {
     //Declaração de métodos abstratos para buscar valores correspondentes na base de dados  a partir do email
     String queryNome(String email);         //Busca nome do cliente na base de dados a partir do email

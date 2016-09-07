@@ -1,12 +1,12 @@
 package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.login;
 
-import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.interfaces.Queries;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.interfaces.QueryUsuarios;
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.Usuario;
 
 /**
  * Created by G.Cherubini on 11/08/2016.
  */
-public class UsuarioLogin implements Queries
+public class UsuarioLogin implements QueryUsuarios
 {
     //Campos para pegar as informações dos editText do LoginFragment
     private String mEmailLogin;
@@ -40,7 +40,7 @@ public class UsuarioLogin implements Queries
         mSenhaLogin = senhaLogin;
     }
 
-    //Implementação dos métodos abstratos da interface Queries definida. TODO: FALAR COM F. PINTO
+    //Implementação dos métodos abstratos da interface QueryUsuarios definida. TODO: FALAR COM F. PINTO
 
     public String queryNome(String email)
     {

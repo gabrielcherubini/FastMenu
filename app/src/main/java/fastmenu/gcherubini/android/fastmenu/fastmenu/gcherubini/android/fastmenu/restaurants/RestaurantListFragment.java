@@ -7,8 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
 
 import fastmenu.gcherubini.android.fastmenu.R;
 
@@ -17,29 +18,73 @@ import fastmenu.gcherubini.android.fastmenu.R;
  */
 public class RestaurantListFragment extends Fragment
 {
-    public RecyclerView mRestaurantList;
+    private RecyclerView mRestaurantRecyclerView;
+    private RestaurantAdapter mAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_restaurantlist, container, false);
 
-        mRestaurantList = (RecyclerView)v.findViewById(R.id.fragment_restaurantlist_recyclerview);
-        mRestaurantList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRestaurantRecyclerView = (RecyclerView)v.findViewById(R.id.fragment_restaurantlist_recyclerview);
+        mRestaurantRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        updateUI();
 
         return v;
     }
 
-    private class restaurantHolder extends RecyclerView.ViewHolder
+    private void updateUI()
     {
-        public TextView mNomeRestauranteTextView;
+        RestaurantList restaurantList = RestaurantList.get(getActivity());
+        List<Restaurant> restaurants = restaurantList.getRestaurants();
 
-        //public ImageView mLogoRestauranteImageView;
+        mAdapter = new RestaurantAdapter(restaurants);
+        mRestaurantRecyclerView.setAdapter(mAdapter);
+    }
 
-        public restaurantHolder(View itemView)
+    private class RestaurantHolder extends RecyclerView.ViewHolder
+    {
+        public TextView mNomeRestaurantTextView;
+
+        public RestaurantHolder(View itemView)
         {
             super(itemView);
-            mNomeRestauranteTextView = (TextView)itemView;
+            mNomeRestaurantTextView = (TextView)itemView;
+        }
+    }
+
+    private class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder>
+    {
+
+        private List<Restaurant> mRestaurants;
+
+        public RestaurantAdapter(List<Restaurant> restaurants)
+        {
+            mRestaurants = restaurants;
+        }
+
+        @Override
+        public RestaurantHolder onCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+
+            return new RestaurantHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(RestaurantHolder holder, int position)
+        {
+            Restaurant restaurant = mRestaurants.get(position);
+            holder.mNomeRestaurantTextView.setText(restaurant.getNome());
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return mRestaurants.size();
         }
     }
 }
