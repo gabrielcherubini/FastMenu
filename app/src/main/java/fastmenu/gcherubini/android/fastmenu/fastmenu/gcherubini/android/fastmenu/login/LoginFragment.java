@@ -30,7 +30,6 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    //Inflater e ViewGroup NAO CHAMADOS do support.v4??
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {

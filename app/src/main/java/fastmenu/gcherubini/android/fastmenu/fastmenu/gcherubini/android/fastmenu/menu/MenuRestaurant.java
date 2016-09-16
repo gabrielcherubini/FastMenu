@@ -8,16 +8,12 @@ import java.util.List;
 /**
  * Created by G.Cherubini on 06/09/2016.
  */
-public class Menu
+public class MenuRestaurant
 {
 
     //Variável estática para criar unica instancia da classe (singleton)
-    private static Menu sMenu;
+    private static MenuRestaurant sMenuRestaurant;
 
-    //Declaração do menu, composto por uma lista de listas
-    private List<List<MenuItem>> mMenu;
-
-    //Declaração das listas de items do menu
     private List<MenuItem> mItemListEntrada;
     private List<MenuItem> mItemListPratoPrincipal;
     private List<MenuItem> mItemListSobremesa;
@@ -29,35 +25,20 @@ public class Menu
     private int mID;
 
     //Método da singleton para instanciar uma classe menu nova caso nenhuma instancia tenha sido identificada
-    public static Menu get(Context context, int id)
+    public static MenuRestaurant get(Context context, int id)
     {
-        if (sMenu == null)
+        if (sMenuRestaurant == null)
         {
-            sMenu = new Menu(context, id);
+            sMenuRestaurant = new MenuRestaurant(context, id);
         }
-        return sMenu;
+        return sMenuRestaurant;
     }
 
     //Constructor. Argumento ID passado do restaurante e usado para buscar o menu relativo à aquele restaurante
-    private Menu(Context context, int id)
+    private MenuRestaurant(Context context, int id)
     {
         setID(id);
         createLists();
-    }
-
-    //Método para agrupar as listas dos diferentes tipos de produtos em um menu simplificado
-    public List<List<MenuItem>> getMenu()
-    {
-        mMenu = new ArrayList<>();
-
-        mMenu.add(mItemListEntrada);
-        mMenu.add(mItemListPratoPrincipal);
-        mMenu.add(mItemListSobremesa);
-        mMenu.add(mItemListBebida);
-        mMenu.add(mItemListOutro);
-        mMenu.add(mItemListPromoção);
-
-        return mMenu;
     }
 
     //Getters
@@ -88,7 +69,7 @@ public class Menu
 
     public List<MenuItem> getItemListPromoção()
     {
-        return mItemListOutro;
+        return mItemListPromoção;
     }
 
     public int getID()
@@ -101,6 +82,13 @@ public class Menu
         mID = ID;
     }
 
+
+    //Método para buscar a quantidade de itens no menu do restaurante a partir da ID dada
+    private int findItemsNumber(int id)
+    {
+        int num = 10; //Integer para buscar a quantidade de itens no menu do restaurante dado pela ID
+        return num;
+    }
 
     //Método para criar as listas de cada tipo de produto vendido pelo restaurante
     private void createLists()
@@ -149,12 +137,4 @@ public class Menu
             }
         }
     }
-
-    //Método para buscar a quantidade de itens no menu do restaurante a partir da ID dada
-    private int findItemsNumber(int id)
-    {
-        int num = 10; //Integer para buscar a quantidade de itens no menu do restaurante dado pela ID
-        return num;
-    }
-
 }

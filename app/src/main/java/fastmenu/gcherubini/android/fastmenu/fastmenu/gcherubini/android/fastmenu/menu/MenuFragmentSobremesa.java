@@ -3,8 +3,8 @@ package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmen
 import android.support.v4.app.Fragment;
 
 /**
- * Created by G.Cherubini on 06/09/2016.
+ * Created by G.Cherubini on 14/09/2016.
  */
-public class MenuBottomFragment extends Fragment
+public class MenuFragmentSobremesa extends Fragment
 {
 }

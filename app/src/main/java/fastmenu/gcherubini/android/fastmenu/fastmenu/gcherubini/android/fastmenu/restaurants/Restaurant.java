@@ -3,20 +3,22 @@ package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmen
 import java.util.UUID;
 
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.interfaces.QueryRestaurantes;
-import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.menu.Menu;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.menu.MenuRestaurant;
 
 /**
  * Created by G.Cherubini on 03/09/2016.
  */
 public class Restaurant implements QueryRestaurantes
 {
-    protected UUID mUUID;       //Para preenchimento da lista de restaurantes
-    protected int mID;          //ID do restaurante na base de dados
-    protected String mNome;
-    protected String mEndereço;
-    protected Menu mMenu;
-    protected String mTelefone;
-    protected String mCNPJ;
+    private int mID;            //ID do restaurante na base de dados
+    private String mNome;
+    private String mEndereço;
+    private String mTelefone;
+    private String mCNPJ;
+    private String mInfo;
+    private String mDistância;
+
+    private MenuRestaurant mMenuRestaurant;
 
     //Constructor sem argumentos
     public Restaurant() {}
@@ -27,14 +29,9 @@ public class Restaurant implements QueryRestaurantes
         setID(id);
     }
 
-    public UUID getUUID()
+    public int getID()
     {
-        return mUUID;
-    }
-
-    public void setUUID(UUID id)
-    {
-        mUUID = id;
+        return mID;
     }
 
     public String getNome()
@@ -42,11 +39,32 @@ public class Restaurant implements QueryRestaurantes
         return mNome;
     }
 
-    public int getID()
+    public String getEndereço()
     {
-        return mID;
+        return mEndereço;
     }
 
+    public String getTelefone()
+    {
+        return mTelefone;
+    }
+
+    public String getCNPJ()
+    {
+        return mCNPJ;
+    }
+
+    public String getInfo()
+    {
+        return mInfo;
+    }
+
+    public String getDistância()
+    {
+        return mDistância;
+    }
+
+    //Setters
     public void setID(int ID)
     {
         mID = ID;
@@ -57,29 +75,9 @@ public class Restaurant implements QueryRestaurantes
         mNome = nome;
     }
 
-    public String getEndereço()
-    {
-        return mEndereço;
-    }
-
     public void setEndereço(String endereço)
     {
         mEndereço = endereço;
-    }
-
-    public Menu getMenu()
-    {
-        return mMenu;
-    }
-
-    public void setMenu(Menu menu)
-    {
-        mMenu = menu;
-    }
-
-    public String getTelefone()
-    {
-        return mTelefone;
     }
 
     public void setTelefone(String telefone)
@@ -87,16 +85,41 @@ public class Restaurant implements QueryRestaurantes
         mTelefone = telefone;
     }
 
-    public String getCNPJ()
-    {
-        return mCNPJ;
-    }
-
     public void setCNPJ(String CNPJ)
     {
         mCNPJ = CNPJ;
     }
 
+    public void setInfo(String info)
+    {
+        mInfo = info;
+    }
+
+    public void setDistância(String distância)
+    {
+        mDistância = distância;
+    }
+
+
+    //Getter e setter para a variavel que guarda o menu
+    public MenuRestaurant getMenuRestaurant()
+    {
+        return mMenuRestaurant;
+    }
+
+    public void setMenuRestaurant(MenuRestaurant menu)
+    {
+        mMenuRestaurant = menu;
+    }
+
+    //Metodo para buscar o menu da base de dados
+    public void fetchMenu()
+    {
+
+    }
+
+    //Implementação dos métodos abstratos da interface QueryRestaurantes
+    //para buscar informações na base de dados
     public String queryNome(int id)
     {
         return "";
@@ -106,6 +129,7 @@ public class Restaurant implements QueryRestaurantes
     {
         return "";
     }
+
     public String queryTelefone(int id)
     {
         return "";
@@ -115,4 +139,18 @@ public class Restaurant implements QueryRestaurantes
     {
         return "";
     }
+
+    public String queryInfo(int id)
+    {
+        return "";
+    }
+
+    //Método para calcular a distância do restaurante até dada posição
+    public String calculateDistance(double latitude, double longitude)
+    {
+        return "600m";
+    }
+
+
+
 }

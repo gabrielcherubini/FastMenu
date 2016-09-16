@@ -35,4 +35,13 @@
     <string name="camposVazios_string">Há campos não preenchidos</string>
 
     <string name="emailNaoRegistradoToast_string">Email não registrado ou senha incorreta</string>
+
+    <string name="distanciaLabel_string">Distância: </string>
+    <string name="preçoLabel_string">R$ </string>
+    <string name="menuLabel_string">Menu</string>
+
+    <string name="informações_string">Sobre o restaurante</string>
+    <string name="meuPedido_string">Meu pedido</string>
+    <string name="minhaConta_string">Minha conta</string>
+    <string name="config_string">Configurações</string>
 </resources>

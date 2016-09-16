@@ -29,11 +29,16 @@ public class RestaurantList
         mRestaurants = new ArrayList<>();
         for(int i = 0; i < 100; i++)
         {
-            Restaurant restaurant = new Restaurant();
+            Restaurant restaurant = new Restaurant(i);
+            restaurant.setID(i);
             restaurant.setNome("Restaurante " + i);
+            restaurant.setEndereço("Av. Dummy, " + i);
+            restaurant.setInfo("Restaurante teste (hardcoded - classe Restaurant");
+            restaurant.setCNPJ("111111111111111");
+            restaurant.setTelefone("(11)11111-1111");
+            restaurant.setDistância(restaurant.calculateDistance(1.0, 1.0));
             mRestaurants.add(restaurant);
         }
-
     }
 
     public List<Restaurant> getRestaurants()
@@ -41,16 +46,16 @@ public class RestaurantList
         return mRestaurants;
     }
 
-    public Restaurant getRestaurant(UUID uuid)
+    public Restaurant getRestaurant(int id)
     {
         for (Restaurant restaurant : mRestaurants)
         {
-            if(restaurant.getUUID().equals(uuid))
+            if(restaurant.getID() == id)
             {
                 return restaurant;
             }
         }
-        return null; //TODO: retornando null (criar exceção)
+        return null; //TODO: retornando null (criar tratamento quando aplicar este método)
     }
 
 

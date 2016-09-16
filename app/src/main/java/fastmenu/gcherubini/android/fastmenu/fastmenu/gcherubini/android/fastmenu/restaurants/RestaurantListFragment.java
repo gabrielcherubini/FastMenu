@@ -1,5 +1,6 @@
 package fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.restaurants;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,11 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import fastmenu.gcherubini.android.fastmenu.R;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.menu.MenuActivity;
+import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.superclasses.MyLocation;
 
 /**
  * Created by Gabriel on 19/08/2016.
@@ -44,14 +49,42 @@ public class RestaurantListFragment extends Fragment
         mRestaurantRecyclerView.setAdapter(mAdapter);
     }
 
-    private class RestaurantHolder extends RecyclerView.ViewHolder
+    //Holder do view definido pelo res/layout list_restaurant.xml
+    private class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        public TextView mNomeRestaurantTextView;
+        private TextView mNomeListRestauranteTextView;
+        private TextView mEndereçoListRestauranteTextView;
+        private TextView mlabelDistanciaListRestauranteTextView;
+        private TextView mDistanciaListRestauranteTextView;
+        private Button mInfoListRestauranteButton;
+        private Restaurant mRestaurant;
 
         public RestaurantHolder(View itemView)
         {
             super(itemView);
-            mNomeRestaurantTextView = (TextView)itemView;
+            itemView.setOnClickListener(this);
+            mNomeListRestauranteTextView = (TextView)itemView.findViewById(R.id.nomeListRestaurante_textView);
+            mEndereçoListRestauranteTextView = (TextView)itemView.findViewById(R.id.endereçoListRestaurante_textView);
+            mlabelDistanciaListRestauranteTextView = (TextView)itemView.findViewById(R.id.labelDistanciaListRestaurante_textView);
+            mDistanciaListRestauranteTextView = (TextView)itemView.findViewById(R.id.distanciaListRestaurante_textView);
+            mInfoListRestauranteButton = (Button)itemView.findViewById(R.id.infoListRestaurante_button);
+        }
+
+        public void bindRestaurant(Restaurant restaurant)
+        {
+            mRestaurant = restaurant;
+            mNomeListRestauranteTextView.setText(restaurant.getNome());
+            mEndereçoListRestauranteTextView.setText(restaurant.getEndereço());
+            mlabelDistanciaListRestauranteTextView.setText(R.string.distanciaLabel_string);
+            mDistanciaListRestauranteTextView.setText(restaurant.getDistância());
+            mInfoListRestauranteButton.setText(R.string.infoLabel_string);
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = MenuActivity.newIntent(getActivity(), mRestaurant.getID());
+            startActivity(intent);
         }
     }
 
@@ -69,7 +102,7 @@ public class RestaurantListFragment extends Fragment
         public RestaurantHolder onCreateViewHolder(ViewGroup parent, int viewType)
         {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            View view = layoutInflater.inflate(R.layout.list_restaurant, parent, false);
 
             return new RestaurantHolder(view);
         }
@@ -78,7 +111,7 @@ public class RestaurantListFragment extends Fragment
         public void onBindViewHolder(RestaurantHolder holder, int position)
         {
             Restaurant restaurant = mRestaurants.get(position);
-            holder.mNomeRestaurantTextView.setText(restaurant.getNome());
+            holder.bindRestaurant(restaurant);
         }
 
         @Override
