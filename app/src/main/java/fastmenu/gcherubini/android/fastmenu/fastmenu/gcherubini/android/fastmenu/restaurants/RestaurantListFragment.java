@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,12 +28,28 @@ public class RestaurantListFragment extends Fragment
 {
     private RecyclerView mRestaurantRecyclerView;
     private RestaurantAdapter mAdapter;
+    private Toolbar mToolbar;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_restaurant_list, menu);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View v = inflater.inflate(R.layout.fragment_restaurantlist, container, false);
+
+
 
         mRestaurantRecyclerView = (RecyclerView)v.findViewById(R.id.fragment_restaurantlist_recyclerview);
         mRestaurantRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -77,7 +96,7 @@ public class RestaurantListFragment extends Fragment
             mEndereçoListRestauranteTextView.setText(restaurant.getEndereço());
             mlabelDistanciaListRestauranteTextView.setText(R.string.distanciaLabel_string);
             mDistanciaListRestauranteTextView.setText(restaurant.getDistância());
-            mInfoListRestauranteButton.setText(R.string.infoLabel_string);
+            mInfoListRestauranteButton.setText(R.string.informações_string);
         }
 
         @Override

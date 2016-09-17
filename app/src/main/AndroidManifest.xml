@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/MyMaterialTheme">
+        android:theme="@style/AppTheme">
 
 
         <activity android:name=".fastmenu.gcherubini.android.fastmenu.login.LoginActivity"
@@ -32,7 +32,6 @@
         <activity android:name=".fastmenu.gcherubini.android.fastmenu.menu.MenuActivity"
                   android:label="@string/app_name">
         </activity>
-
 
 
     </application>

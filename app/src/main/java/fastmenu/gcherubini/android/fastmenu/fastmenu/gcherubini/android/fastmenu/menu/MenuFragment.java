@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import fastmenu.gcherubini.android.fastmenu.R;
 import fastmenu.gcherubini.android.fastmenu.fastmenu.gcherubini.android.fastmenu.restaurants.Restaurant;
@@ -40,13 +38,14 @@ public class MenuFragment extends Fragment
     public void onCreate (Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
         int restaurantID = (int)getArguments().getInt(ARG_RESTAURANT_ID);
 
         //TODO: Passo intermediário entre clicar no restaurante da lista e exibir tela com informações do restaurante e menu
         //Cria instância do restaurante a partir da ID, puxando-o da lista RestaurantList
         mRestaurant = RestaurantList.get(getActivity()).getRestaurant(restaurantID);
+
+        setHasOptionsMenu(true);
     }
 
     @Override
